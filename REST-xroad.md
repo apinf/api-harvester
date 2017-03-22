@@ -1,6 +1,6 @@
-### Get meta data about X-Road APIs
+# Get list of X-Road APIs
 
-API list from url:
+API list with GET:
 * https://liityntakatalogi.suomi.fi/api/3/action/package_list, which returns:
 
 ```
@@ -8,5 +8,6 @@ API list from url:
 ```
 It is assumed that above resultset will always be comma separated array of API identifiers. 
 
-API details in JSON format can be obtained with: 
+API details for each API in JSON format can be obtained with: 
 * https://liityntakatalogi.suomi.fi/api/3/action/package_search?q=vtjkysely-sovelluskysely-hetuhaku
+
