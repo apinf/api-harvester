@@ -51,12 +51,14 @@ The Datamodel OUT is also a configuration file. For now, following example is su
 - API endpoint URL
 - Homepage URL
 - Description
-- Company
+- Company/organisation name
 
 Additionally metadata (from the Source component)
 - Last scraped
 - Source
-
+- logo URL
+- contact name
+- contact email
 
 # Configuration files
 These are just very rough proposals, please improve!
