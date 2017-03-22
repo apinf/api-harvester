@@ -61,9 +61,7 @@ Additionally metadata (from the Source component)
 - contact email
 
 **Sample datamodel OUT as JSON** should follow the same [data model in APInf.io Catalog REST API](https://github.com/apinf/api-harvester/blob/master/data-models-as-json.md).  
-
-
-Internal note: the above is in conflict now with the desinged catalog REST API POST method for adding API/updating API. Needs to be matched when REST API is implemented. See https://github.com/apinf/platform/issues/2102
+Needs to be matched when REST API is implemented. See https://github.com/apinf/platform/issues/2102
 
 **QUESTION:** What if the source has different language versions for metadata? For example X-Road catalog has all information in three languages: en, sv and fi. 
 **ANSWER:** pick the english content if easy to achieve. Otherwise take the "first" language version in source content.  
