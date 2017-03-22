@@ -15,3 +15,5 @@ Current APInf Catalog REST API data model for adding API with POST method:
 }
 ```
 
+## Notes
+- What to do with organisation name? 
