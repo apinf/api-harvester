@@ -77,6 +77,10 @@ Additionally metadata (from the Source component)
 	}
 }
 ```
+**QUESTION:** What if the source has different language versions for metadata? For example X-Road catalog has all information in three languages: en, sv and fi. 
+**ANSWER:** pick the english content if easy to achieve. Otherwise take the "first" language version in source content.  
+
+
 # Configuration files
 These are just very rough proposals, please improve!
 
