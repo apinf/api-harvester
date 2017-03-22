@@ -26,20 +26,7 @@ Some metadata is also saved, such as timestamp and source.
 ### REST api
 Some of the datasources offer a REST api. We can call the API and fetch data. Easy.
 
-**X-Road APIs**
-Get list of X-Road APIs
-
-API list from url:
-* https://liityntakatalogi.suomi.fi/api/3/action/package_list, which returns:
-
-```
-{"help": "https://liityntakatalogi.suomi.fi/api/3/action/help_show?name=package_list", "success": true, "result": ["ajoneuvoliikennerekisteri", "kiinteistotietojarjestelma", "vtjkysely-sovelluskysely-hetuhaku"]} 
-```
-It is assumed that above resultset will always be comma separated array of API identifiers. 
-
-API details for each API in JSON format can be obtained with: 
-* https://liityntakatalogi.suomi.fi/api/3/action/package_search?q=vtjkysely-sovelluskysely-hetuhaku
-
+One of the sources to harvest [REST: X-Road APIs](https://github.com/apinf/api-harvestor/blob/master/REST-xroad.md)
 
 ### HTML scraper
 Some of the datasources are just HTML pages on the web. Scraping is the solution.
