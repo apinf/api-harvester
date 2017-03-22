@@ -4,7 +4,7 @@ Current APInf Catalog REST API data model for adding API with POST method:
 
 ```
 {
-  "id": "string",
+  "id": "string", (what ever is given, is overriden at server end)
   "name": "My REST API",
   "description": "My REST API description",
   "api_endpoint_url": "https://my.rest.api.com/v1",
