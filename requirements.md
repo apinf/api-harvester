@@ -54,12 +54,29 @@ The Datamodel OUT is also a configuration file. For now, following example is su
 - Company/organisation name
 
 Additionally metadata (from the Source component)
-- Last scraped
-- Source
+- Last scraped (time format must be defined, use the same as in mongo in apinf.io)
+- Source (url)
 - logo URL
 - contact name
 - contact email
 
+**Sample JSON** The below attribute names should match the names in apinf.io database: 
+```
+{
+	"API": {
+		"title": "API Title",
+		"endpoint": "url to API endpoint",
+		"homepage": "url to homepage",
+		"description": "Lorem ipsum",
+    "organization_name":"name of the organization",
+    "last_scraped":"date_time",
+    "source":"url",
+    "logo_url":"url to logo file",
+    "contact_name":"",
+    "contact_email":""
+	}
+}
+```
 # Configuration files
 These are just very rough proposals, please improve!
 
