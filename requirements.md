@@ -60,24 +60,8 @@ Additionally metadata (from the Source component)
 - contact name
 - contact email
 
-**Sample JSON** The below attribute names should match the names in apinf.io database: 
-```
-{
-	"API": {
-		"title": "API Title",
-		"endpoint": "url to API endpoint",
-		"homepage": "url to homepage",
-		"description": "Lorem ipsum",
-		"organization_name": "name of the organization",
-		"last_scraped": "date_time",
-		"source": "url",
-		"logo_url": "url to logo file",
-		"contact_name": "",
-		"contact_email": ""
-	}
-}
+**Sample datamodel OUT as JSON** should follow the same [data model in APInf.io Catalog REST API](https://github.com/apinf/api-harvester/blob/master/data-models-as-json.md).  
 
-```
 
 Internal note: the above is in conflict now with the desinged catalog REST API POST method for adding API/updating API. Needs to be matched when REST API is implemented. See https://github.com/apinf/platform/issues/2102
 
