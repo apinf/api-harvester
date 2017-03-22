@@ -68,12 +68,12 @@ Additionally metadata (from the Source component)
 		"endpoint": "url to API endpoint",
 		"homepage": "url to homepage",
 		"description": "Lorem ipsum",
-    "organization_name":"name of the organization",
-    "last_scraped":"date_time",
-    "source":"url",
-    "logo_url":"url to logo file",
-    "contact_name":"",
-    "contact_email":""
+		"organization_name": "name of the organization",
+		"last_scraped": "date_time",
+		"source": "url",
+		"logo_url": "url to logo file",
+		"contact_name": "",
+		"contact_email": ""
 	}
 }
 ```
