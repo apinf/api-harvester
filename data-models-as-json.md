@@ -19,5 +19,5 @@ Current APInf Catalog REST API data model for adding API with POST method:
 
 ### What to do with organisation name? 
 Orgs are handled with ids.
-- One rather complex option is to make query to CAtalog REST API: get organization list and then match the source organization name to list from apinfio. If match is found, take the ID and add that oto datamodel OUT. This is hazardous since organization names are written differently. We end up having several slightly different org names. 
+- One rather complex option is to make query to CAtalog REST API: get organization list and then match the source organization name to list from apinf.io. If match is found, take the ID and add that to datamodel OUT. Some APIs are not attached to orgs. 
 - We just dont care about organisations now (not good either)
