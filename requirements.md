@@ -6,6 +6,8 @@ That content can come from multiple sources. This is a first step towards world 
 - No GUI is needed. We work with command line.
 - NodeJS is deemed the most appropriate: JSON, mature, easy to deploy
 - The scope is minimal, but this project needs to be done modular. This way we can expand easily.
+- We should be able to run this with a cron script or just by calling command line.
+- Bonus points if this can be easily deployed (e.g. Heroku or AWS). Definitely Docker (Compose).
 
 # Components
 There are 2 main components in scope: "Source" and "Transform".
@@ -58,24 +60,54 @@ Additionally metadata (from the Source component)
 These are just very rough proposals, please improve!
 
 ## Source
-
-## Datamodel OUT
+Here is an example for scraping https://www.programmableweb.com/api/google-maps. Probably we need more fields to deal with page traversing, feel free to add the necessary.
 
 ```
 {
-  'title': {
-    'source': 'header',
-    'default': 'foobar'
-  },
-  'endpoint': {
-    'source': 'api',
-    'default': 'foobar.com'
-  }
+  'name': 'programmableweb',
+  'type': 'rest' | 'scrape' | 'csv',
+  'url': 'https://www.programmableweb.com/category/all/apis',
+  'fields': {
+    'header': {
+      'scrape': '//*[@id="node-62687"]/header/div[2]/div[1]/h1'
+    },
+    'api': {
+      'scrape': '//*[@id="tabs-content"]/div[2]/div[2]/span/a'
+    },
+    'content': {
+      'scrape': '//*[@id="tabs-header-content"]/div/div[1]/text()'
+    }
   
   ...
+  }
 }
 ```
 
+Other types will have different fields, try to find a good format that will fit the most common use cases (REST, Scraping, CSV,...)
+
+## Transform
+
+```
+{
+  'name': 'programmableweb',
+  'fields': {
+    'title': {
+      'source': 'header',
+      'default': 'foobar'
+    },
+    'endpoint': {
+      'source': 'api',
+      'default': 'foobar.com'
+    },
+    'description': {
+      'source': 'content',
+      'default': 'Lorem hipsum...'
+    }
+    
+  ...
+  }
+}
+```
 
 # Not to worry about
 - Conflict resolution
