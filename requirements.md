@@ -40,6 +40,8 @@ Basically read the file and transform CSV to JSON.
 The Transform component takes data in and matches it to a predefined datamodel. The output is again JSON.
 
 ### Datamodel OUT
+NOTE: Not sure if this is explicitely needed to have in a config file. The info will be in the config files for each source specifically. Anyway good to have as a doc.
+
 The Datamodel OUT is also a configuration file. For now, following example is sufficient:
 - Title
 - API endpoint URL
@@ -52,7 +54,27 @@ Additionally metadata (from the Source component)
 - Source
 
 
-# Examples
+# Configuration files
+These are just very rough proposals, please improve!
+
+## Source
+
+## Datamodel OUT
+
+```
+{
+  'title': {
+    'source': 'header',
+    'default': 'foobar'
+  },
+  'endpoint': {
+    'source': 'api',
+    'default': 'foobar.com'
+  }
+  
+  ...
+}
+```
 
 
 # Not to worry about
