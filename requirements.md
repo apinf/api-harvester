@@ -54,7 +54,7 @@ The Datamodel OUT is also a configuration file. For now, following example is su
 - Company/organisation name
 
 Additionally metadata (from the Source component)
-- Last scraped (time format must be defined, use the same as in mongo in apinf.io)
+- Last scraped (time format is standard ISO 8601)
 - Source (url)
 - logo URL
 - contact name
