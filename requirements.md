@@ -32,8 +32,9 @@ One of the sources to harvest [REST: X-Road APIs](https://github.com/apinf/api-h
 Some of the datasources are just HTML pages on the web. Scraping is the solution.
 Plenty of popular scraping libraries exist for NodeJS, e.g.
 - https://github.com/IonicaBizau/scrape-it
-- https://github.com/lapwinglabs/x-ray
+- https://github.com/lapwinglabs/x-ray (looks good: navigation and pagination support, 3.5K stars)
 - https://github.com/rchipka/node-osmosis
+
 (feel free to make your own choice, can be another one entirely)
 
 
