@@ -12,10 +12,7 @@
 	"description": "null",
 	"tags":[],
 	"url": "null", 
-        "specFile": { 
-              "url":"null",
-              "type":"null"
-         },
+        "specFileURL":"null",
 	"lifecycleStatus": "production",
 	"managerIds": [], 
 	"authorizedUserIds": [], 
@@ -39,10 +36,7 @@
 	"description": "test", (Description field, around 200 chars)
 	"tags:["one", "open"] (tags array)
 	"url": "https://api.apinf.io", (API root)
-        "specFile": { 
-              "url":"Swagger file url", (default is null)
-              "type":"swagger"
-         },
+        "specFileUrl":"https://uta.fi/swagger.json",
 	"lifecycleStatus": "production", (default is 'production')
 	"managerIds": [], (default is empty array)
 	"authorizedUserIds": [], (default is empty array)
