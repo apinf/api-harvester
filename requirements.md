@@ -77,7 +77,7 @@ Here is an example for scraping https://www.programmableweb.com/api/google-maps.
 ```
 {
   'name': 'programmableweb',
-  'type': 'rest' | 'scrape' | 'csv',
+  'type': 'rest' | 'scrape' | 'csv', (just one option is in real configuration)
   'url': 'https://www.programmableweb.com/category/all/apis',
   'fields': {
     'header': {
