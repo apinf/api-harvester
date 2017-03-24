@@ -1,5 +1,34 @@
 # APInf Data models
 
+
+Current API configuration in apinf.io
+
+```
+{
+	"_id": "9nuJDa2vLQNaxmJQh",
+	"latestMonitoringStatusCode": "-1",
+	"name": "Ampersand test",
+	"description": "test",
+	"url": "https://api.apinf.io",
+	"lifecycleStatus": "design",
+	"managerIds": [
+		"gYwfyAcuKxQ9udgSt"
+	],
+	"authorizedUserIds": [],
+	"created_at": "2017-02-27T12:48:57.148Z",
+	"bookmarkCount": 1,
+	"isPublic": true,
+	"updated_at": "2017-03-24T01:05:09.405Z",
+	"submit_methods": [
+		"get",
+		"post",
+		"delete",
+		"put"
+	],
+	"documentationFileId": "2a1822480ff90cdc31600561"
+}
+```
+
 Current APInf Catalog REST API data model for adding API with POST method:
 
 ```
@@ -14,6 +43,8 @@ Current APInf Catalog REST API data model for adding API with POST method:
   "organization": 1234
 }
 ```
+
+
 
 ## Notes
 
