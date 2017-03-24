@@ -54,14 +54,7 @@ The Datamodel OUT is also a configuration file. For now, following example is su
 - Description
 - Company/organisation name
 
-Additionally metadata (from the Source component)
-- Last scraped (time format is standard ISO 8601)
-- Source (url)
-- logo URL
-- contact name
-- contact email
-
-**Sample datamodel OUT as JSON** should follow the same [data model in APInf.io Catalog REST API](https://github.com/apinf/api-harvester/blob/master/data-models-as-json.md).  
+[Sample datamodel OUT](https://github.com/apinf/api-harvester/blob/master/data-models-as-json.md).  
 Needs to be matched when REST API is implemented. See https://github.com/apinf/platform/issues/2102
 
 **QUESTION:** What if the source has different language versions for metadata? For example X-Road catalog has all information in three languages: en, sv and fi. 
@@ -108,7 +101,7 @@ To go through all the APIs in for example ProgrammableWeb, you need to use pagin
 * https://www.programmableweb.com/category/all/apis?page=2 gives the 3rd batch
 * ....and so on until the result set does not contain following structure
 
-Each of the above pages will be HTML and you can find link (example <a href="/api/yahoo-boss">Yahoo BOSS</a>) to single API pages (which will be scraped with above given X-Paths). 
+Each of the above pages will be HTML and you can find link (example <a href="/api/yahoo-boss">Yahoo BOSS</a>) to single API pages (which will be scraped with above given XPaths). We might want to add XPath for the link to API profile page as well in the config. Below is example of html around the link element.  
 
 ```
 <div class="view-content">
@@ -126,7 +119,7 @@ Each of the above pages will be HTML and you can find link (example <a href="/ap
 ```
 
 Link to single API page is constructed by appending above found link to "catalog_root" in the configuration. For example in this case: 
-* "https://www.programmableweb.com" + "api/yahoo-boss"
+* "https://www.programmableweb.com" + "/api/yahoo-boss"
 
 
 Other types will have different fields, try to find a good format that will fit the most common use cases (REST, Scraping, CSV,...)
