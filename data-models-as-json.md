@@ -1,10 +1,33 @@
 # APInf Data models
 
-Default values for each attribute will be given below. 
 
-Current API configuration in apinf.io
+## Dummy JSON output with default values.
 
-Perhaps something like this. 
+```
+{
+	"_id": "null",
+	"latestMonitoringStatusCode": "0",
+	"name": "null",
+        "organizationName":"null",
+	"description": "null",
+	"url": "null", 
+        "specFile": { 
+              "url":"null",
+              "type":"null"
+         },
+	"lifecycleStatus": "production",
+	"managerIds": [], (default is empty array)
+	"authorizedUserIds": [], (default is empty array)
+	"created_at": "2017-02-27T12:48:57.148Z", (when created from harvester point of view)
+	"bookmarkCount": 0, (default is 0)
+	"isPublic": true, (default is true)
+	"updated_at": "2017-03-24T01:05:09.405Z", (when updated from harvester point of view)
+	"submit_methods": [], (default is empty array)
+	"documentationFileId": "2a1822480ff90cdc31600561" (default is null)
+}
+```
+
+## Example of what it might actually look like 
 
 ```
 {
