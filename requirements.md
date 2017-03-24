@@ -98,7 +98,7 @@ Here is an example for scraping https://www.programmableweb.com/api/google-maps.
 }
 ```
 
-** Process sketch**
+**Process sketch**
 
 ![Process](https://raw.githubusercontent.com/apinf/api-harvester/master/scraping-programmable.png)
 
