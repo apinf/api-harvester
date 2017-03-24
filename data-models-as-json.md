@@ -10,6 +10,7 @@
 	"name": "null",
         "organizationName":"null",
 	"description": "null",
+	"tags":[],
 	"url": "null", 
         "specFile": { 
               "url":"null",
@@ -36,6 +37,7 @@
 	"name": "Ampersand test", (API name)
         "organizationName":"name of the organization",
 	"description": "test", (Description field, around 200 chars)
+	"tags:["one", "open"] (tags array)
 	"url": "https://api.apinf.io", (API root)
         "specFile": { 
               "url":"Swagger file url", (default is null)
