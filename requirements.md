@@ -98,6 +98,10 @@ Here is an example for scraping https://www.programmableweb.com/api/google-maps.
 }
 ```
 
+** Process sketch**
+
+(ADD HERE A PIC)
+
 To go through all the APIs in for example ProgrammableWeb, you need to use paging. 
 * https://www.programmableweb.com/category/all/apis will give the first batch
 * https://www.programmableweb.com/category/all/apis?page=1 gives the second batch
