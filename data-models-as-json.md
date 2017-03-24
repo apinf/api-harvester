@@ -1,5 +1,6 @@
 # APInf Data models
 
+Default values for each attribute will be given below. 
 
 Current API configuration in apinf.io
 
