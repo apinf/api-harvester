@@ -74,11 +74,14 @@ These are just very rough proposals, please improve!
 ## Source
 Here is an example for scraping https://www.programmableweb.com/api/google-maps. Probably we need more fields to deal with page traversing, feel free to add the necessary.
 
+**Configration for ProgrammableWeb**
+
 ```
 {
   'name': 'programmableweb',
   'type': 'rest' | 'scrape' | 'csv', (just one option is in real configuration)
   'url': 'https://www.programmableweb.com/category/all/apis',
+  'catalog_root':"https://www.programmableweb.com",
   'fields': {
     'header': {
       'scrape': '//*[@id="node-62687"]/header/div[2]/div[1]/h1'
@@ -94,6 +97,33 @@ Here is an example for scraping https://www.programmableweb.com/api/google-maps.
   }
 }
 ```
+
+To go through all the APIs in for example ProgrammableWeb, you need to use paging. 
+* https://www.programmableweb.com/category/all/apis will give the first batch
+* https://www.programmableweb.com/category/all/apis?page=1 gives the second batch
+* https://www.programmableweb.com/category/all/apis?page=2 gives the 3rd batch
+* ....and so on until the result set does not contain following structure
+
+Each of the above pages will be HTML and you can find link (example <a href="/api/yahoo-boss">Yahoo BOSS</a>) to single API pages (which will be scraped with above given X-Paths). 
+
+```
+<div class="view-content">
+<table>
+<tr class="views-row-first">
+<td class="views-field views-field-title col-md-3">
+            <a href="/api/yahoo-boss">Yahoo BOSS</a><br>
+</td>
+...
+</tr>
+...
+
+</table>
+</div>
+```
+
+Link to single API page is constructed by appending above found link to "catalog_root" in the configuration. For example in this case: 
+* "https://www.programmableweb.com" + "api/yahoo-boss"
+
 
 Other types will have different fields, try to find a good format that will fit the most common use cases (REST, Scraping, CSV,...)
 
