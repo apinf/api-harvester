@@ -10,6 +10,7 @@
 	"latestMonitoringStatusCode": "0",
 	"name": "null",
         "organizationName":"null",
+	"homePageUrl":"null",
 	"contactEmail":"null",
 	"description": "null",
 	"tags":[],
@@ -34,6 +35,7 @@
 	"latestMonitoringStatusCode": "0", (this is default)
 	"name": "Ampersand test", (API name)
         "organizationName":"name of the organization",
+	"homePageUrl":"https://uta.fi",
 	"contactName":"Jarkko Moilanen",
 	"description": "test", (Description field, around 200 chars)
 	"tags:["one", "open"] (tags array)
