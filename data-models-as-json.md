@@ -4,69 +4,29 @@ Default values for each attribute will be given below.
 
 Current API configuration in apinf.io
 
-```
-{
-	"_id": "9nuJDa2vLQNaxmJQh",
-	"latestMonitoringStatusCode": "-1",
-	"name": "Ampersand test",
-	"description": "test",
-	"url": "https://api.apinf.io",
-	"lifecycleStatus": "design",
-	"managerIds": [
-		"gYwfyAcuKxQ9udgSt"
-	],
-	"authorizedUserIds": [],
-	"created_at": "2017-02-27T12:48:57.148Z",
-	"bookmarkCount": 1,
-	"isPublic": true,
-	"updated_at": "2017-03-24T01:05:09.405Z",
-	"submit_methods": [
-		"get",
-		"post",
-		"delete",
-		"put"
-	],
-	"documentationFileId": "2a1822480ff90cdc31600561"
-}
-```
-
-Current APInf Catalog REST API data model for adding API with POST method:
+Perhaps something like this. 
 
 ```
 {
-  "id": "string", (what ever is given, is overriden at server end)
-  "name": "My REST API",
-  "description": "My REST API description",
-  "api_endpoint_url": "https://my.rest.api.com/v1",
-  "lifecycle": "Design",
-  "created_at": "2012-07-14T01:00:00+01:00",
-  "updated_at": "2012-07-14T01:00:00+01:00",
-  "organization": 1234
+	"_id": "null", (default is null)
+	"latestMonitoringStatusCode": "0", (this is default)
+	"name": "Ampersand test", (API name)
+        "organizationName":"name of the organization",
+	"description": "test", (Description field, around 200 chars)
+	"url": "https://api.apinf.io", (API root)
+        "specFile": { 
+              "url":"Swagger file url", (default is null)
+              "type":"swagger"
+         },
+	"lifecycleStatus": "production", (default is 'production')
+	"managerIds": [], (default is empty array)
+	"authorizedUserIds": [], (default is empty array)
+	"created_at": "2017-02-27T12:48:57.148Z", (when created from harvester point of view)
+	"bookmarkCount": 0, (default is 0)
+	"isPublic": true, (default is true)
+	"updated_at": "2017-03-24T01:05:09.405Z", (when updated from harvester point of view)
+	"submit_methods": [], (default is empty array)
+	"documentationFileId": "2a1822480ff90cdc31600561" (default is null)
 }
 ```
 
-
-
-## Notes
-
-### What to do with organisation name? 
-Orgs are handled with ids.
-- One rather complex option is to make query to CAtalog REST API: get organization list and then match the source organization name to list from apinf.io. If match is found, take the ID and add that to datamodel OUT. Some APIs are not attached to orgs. 
-- We just dont care about organisations now (not good either)
-
-Perhaps we need to have: 
-```
-{
-  "id": "string", (what ever is given, is overriden at server end)
-  "name": "My REST API",
-  "description": "My REST API description",
-  "api_endpoint_url": "https://my.rest.api.com/v1",
-  "lifecycle": "Design",
-  "created_at": "2012-07-14T01:00:00+01:00",
-  "updated_at": "2012-07-14T01:00:00+01:00",
-  "organization": 1234,
-  "logo_url": "url",
-  "contact_name":"",
-  "contact_email":""
-}
-```
