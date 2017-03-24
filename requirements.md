@@ -65,7 +65,7 @@ Needs to be matched when REST API is implemented. See https://github.com/apinf/p
 These are just very rough proposals, please improve!
 
 ## Source
-Here is an example for scraping https://www.programmableweb.com/api/google-maps. Probably we need more fields to deal with page traversing, feel free to add the necessary.
+Here is an example for scraping https://www.programmableweb.com. 
 
 **Configration for ProgrammableWeb**
 
