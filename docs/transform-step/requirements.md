@@ -10,7 +10,7 @@ The command line takes either a parameter that
 
 ## Input
 The input is JSON.
-[Sample input file](sampe-in.json)
+[Sample input file](sample-in.json)
 
 ## Output
 The output is also JSON.

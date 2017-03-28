@@ -11,7 +11,7 @@ There are 2 parts for running the Source step for Web scraping:
 ## Navigation
 The [configuration file](sample-programmableweb.json) needs to contain the necessary information so that the web scraping module can navigate through a paginated list and go to the detail page of each API.
 
-![Navigation](https://raw.githubusercontent.com/apinf/api-harvester/master/scraping-programmable.png)
+![Navigation](../../img/scraping-programmable.png)
 
 To go through all the APIs in for example ProgrammableWeb, you need to use pagination.
 - https://www.programmableweb.com/category/all/apis will give the first batch
