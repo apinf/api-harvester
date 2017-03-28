@@ -21,7 +21,7 @@ JSON input is transformed to the appropriate output using the correct datamodel.
 
 
 ## Graphical overview
-![Graphical overview][docs/img/overview.png]
+![Graphical overview](docs/img/overview.png)
 
 # Requirements
 - No GUI is needed. We work with command line.
