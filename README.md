@@ -20,6 +20,9 @@ JSON input is transformed to the appropriate output using the correct datamodel.
 [Transform step requirements](docs/transform-step/requirements.md) are in separate file.
 
 
+## Graphical overview
+![Graphical overview][docs/img/overview.png]
+
 # Requirements
 - No GUI is needed. We work with command line.
 - NodeJS is the most appropriate: JSON, mature, easy to deploy
