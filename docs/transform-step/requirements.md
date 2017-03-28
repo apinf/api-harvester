@@ -1,48 +1,23 @@
+# Transform step
+The Transform module takes JSON data in and matches it to a predefined datamodel. The output is again JSON.
+Default values can be defined in case data is missing.
+
+## CLI
+The command line takes either a parameter that
+- points to a folder (and then runs every config file in the folder) or
+- points to a specific config file (and runs only that file)
 
 
-## Transform
-The Transform component takes data in and matches it to a predefined datamodel. The output is again JSON.
+## Input
+The input is JSON.
+[Sample input file](sampe-in.json)
 
-### Datamodel OUT
-NOTE: Not sure if this is explicitely needed to have in a config file. The info will be in the config files for each source specifically. Anyway good to have as a doc.
-
-The Datamodel OUT is also a configuration file. For now, following example is sufficient:
-- Title
-- API endpoint URL
-- Homepage URL
-- Description
-- Company/organisation name
-
-[Sample datamodel OUT](https://github.com/apinf/api-harvester/blob/master/data-models-as-json.md).  
-Needs to be matched when REST API is implemented. See https://github.com/apinf/platform/issues/2102
-
-**QUESTION:** What if the source has different language versions for metadata? For example X-Road catalog has all information in three languages: en, sv and fi.
-**ANSWER:** pick the english content if easy to achieve. Otherwise take the "first" language version in source content.  
+## Output
+The output is also JSON.
+[Sample output file](sample-out.json)
 
 
+## Config files
+Config files match the input data to the correct datamodel. It can also define defaults in case data is missing.
 
-
-
-## Transform
-
-```
-{
-  'name': 'programmableweb',
-  'fields': {
-    'title': {
-      'source': 'header',
-      'default': 'foobar'
-    },
-    'endpoint': {
-      'source': 'api',
-      'default': 'foobar.com'
-    },
-    'description': {
-      'source': 'content',
-      'default': 'Lorem hipsum...'
-    }
-
-  ...
-  }
-}
-```
+[Sample config file][sample-programmableweb.json] for the programmableweb.com example.

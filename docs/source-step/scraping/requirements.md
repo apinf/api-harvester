@@ -8,7 +8,7 @@ There are 2 parts for running the Source step for Web scraping:
 - Navigation
 - Harvesting API data
 
-#### Navigation
+## Navigation
 The [configuration file](sample-programmableweb.json) needs to contain the necessary information so that the web scraping module can navigate through a paginated list and go to the detail page of each API.
 
 ![Navigation](https://raw.githubusercontent.com/apinf/api-harvester/master/scraping-programmable.png)
@@ -35,8 +35,7 @@ The config file contains the necessary data to enable pagination.
   - limit: How many pages to navigate (when not defined, there is no limit)
 
 
-#### Harvesting API data
-
+## Harvesting API data
 The config file contains a "fields" section which identifies the data being scraped:
 - header
 - api

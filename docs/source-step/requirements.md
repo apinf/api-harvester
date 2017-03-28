@@ -7,6 +7,7 @@ With the Source step, we aim to collect data from 3 different types of sources:
 
 In scope:
 - Web scraping module
+
 Out of scope:
 - REST APIs module
 - CSV files module
@@ -25,10 +26,10 @@ The result of the source step is JSON.
 The output does not need to be saved to disk. JSON gets passed on to the Transform step in memory.
 
 
-## CLI Parameters
+## CLI
 The command line takes either a parameter that
-- points to a folder (and then runs every file in the folder) or
-- points to a specific file (and runs only that file)
+- points to a folder (and then runs every config file in the folder) or
+- points to a specific config file (and runs only that file)
 
 
 
