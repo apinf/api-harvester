@@ -7,7 +7,11 @@ We can get the API list with GET call: https://liityntakatalogi.suomi.fi/api/3/a
 It returns JSON:
 
 ```
-{"help": "https://liityntakatalogi.suomi.fi/api/3/action/help_show?name=package_list", "success": true, "result": ["ajoneuvoliikennerekisteri", "kiinteistotietojarjestelma", "vtjkysely-sovelluskysely-hetuhaku"]} 
+{
+	"help": "https://liityntakatalogi.suomi.fi/api/3/action/help_show?name=package_list",
+	"success": true,
+	"result": ["ajokorttitiedot", "aloitepalvelut", "atvarvojoukotrajapinta", "atventiteettirajapinnat", "atvreferenssitietopalvelu", "atvyhdistelmarajapinnat", "hsywatermsystem", "infraservices", "kirjaamisosatietopalvelu", "kkysely", "kyllapito", "omatajoneuvot", "omatveneet", "palveluvayla", "rolesauthsservice", "virta-otp", "voimassaolopalvelu", "vrkclient", "vtjkysely", "vtjyllapito", "xroadvirre-services", "xroadytj-services"]
+}
 ```
 That JSON needs to be parsed and extract "result" content (array) from there. It is assumed that above resultset will always be comma separated array of API identifiers. (["ajoneuvoliikennerekisteri", "kiinteistotietojarjestelma", "vtjkysely-sovelluskysely-hetuhaku"]).  
 
