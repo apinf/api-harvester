@@ -7,9 +7,9 @@ With the Source step, we aim to collect data from 3 different types of sources:
 
 In scope:
 - Web scraping module
+- REST APIs module
 
 Out of scope:
-- REST APIs module
 - CSV files module
 
 ## Output
@@ -40,7 +40,7 @@ The logic for the Source step datasources is saved in config files for each data
 [Web scraping requirements](scraping/requirements.md)
 
 ### REST API
-Out of scope
+[REST scraping requirements](rest/requirements.md)
 
 ### CSV files
 Out of scope

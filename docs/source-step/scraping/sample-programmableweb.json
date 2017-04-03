@@ -1,6 +1,6 @@
 {
   "name": "programmableweb",
-  "type": "rest",
+  "type": "web",
   "list": "https://www.programmableweb.com/category/all/apis",
   "pagination": {
     "selector": ".nav-previous a@href",
