@@ -46,7 +46,7 @@ The config file contains the necessary data to enable the retrievel of all APIs 
 The get information from one API we take the name of the API (each in the above array is name of an API), and put that as parameter to second GET method. In the below example we get JSON formatted details about "vtjkysely-sovelluskysely-hetuhaku".  
 https://liityntakatalogi.suomi.fi/api/3/action/package_search?q=vtjkysely-sovelluskysely-hetuhaku
 
-That will return JSON [x-road detail sample](sample-x-road-input.json)
+That will return JSON [x-road detail sample](x-road.json)
 
 ## Harvesting API data
 The config file contains a "fields" section which identifies the data being scraped:
