@@ -15,6 +15,7 @@ The input is JSON.
 ## Output
 The output is also JSON.
 [Sample output file](sample-out.json)
+The REST API documentation can be found on [apinf.io](https://apinf.io/apis/TYf33t5B6D6fwamKt)
 
 
 ## Config files
