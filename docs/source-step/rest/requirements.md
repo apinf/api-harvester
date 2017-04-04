@@ -9,7 +9,7 @@ There are 2 parts for running the Source step for REST scraping:
 
 ## Navigation
 REST scraping is similar to web scraping. There typically is a REST endpoint that gives a list of APIs which provides IDs that can be used to navigate to the details of each API separately.
-The [configuration file](sample-x-road.json) needs to contain the necessary information so that the REST scraping module can navigate through a list and go to the detail API of each API.
+The [configuration file](sample-xroad.json) needs to contain the necessary information so that the REST scraping module can navigate through a list and go to the detail API of each API.
 
 We can get the API list with GET call: https://liityntakatalogi.suomi.fi/api/3/action/package_list
 
