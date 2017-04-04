@@ -15,7 +15,7 @@
       "selector": "result.results.url"
     },
     "description": {
-      "selector": "result.results.description"
+      "selector": "result.results.organization.description"
     }
   }
 }
