@@ -1,0 +1,21 @@
+{
+  "name": "x-road",
+  "type": "rest",
+  "list": "https://liityntakatalogi.suomi.fi/api/3/action/help_show?name=package_list",
+  "detail": "https://liityntakatalogi.suomi.fi/api/3/action/package_search?q={{id}}",
+  "pagination": {
+    "selector": "result",
+    "limit": 3,
+  },
+  "fields": {
+    "title": {
+      "selector": "result.results.title"
+    },
+    "url": {
+      "selector": "result.results.url"
+    },
+    "description": {
+      "selector": "result.results.organization.description"
+    }
+  }
+}

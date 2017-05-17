@@ -19,7 +19,7 @@ The get information from one API we take the name of the API (each in the above 
 
 * https://liityntakatalogi.suomi.fi/api/3/action/package_search?q=vtjkysely-sovelluskysely-hetuhaku
 
-That will return JSON: 
+That will return JSON:
 ```
 
 {
@@ -459,4 +459,4 @@ That will return JSON:
 
 ```
 ## Output
-For each API we need the same JSON formatted [OUT data set defined here](https://github.com/apinf/api-harvester/blob/master/data-models-as-json.md) 
+For each API we need the same JSON formatted [OUT data set defined here](https://github.com/apinf/api-harvester/blob/master/data-models-as-json.md)

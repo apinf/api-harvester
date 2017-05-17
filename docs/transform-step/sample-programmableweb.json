@@ -1,0 +1,17 @@
+{
+  "name": "programmableweb",
+  "fields": {
+    "title": {
+      "source": "header",
+      "default": "Default title value"
+    },
+    "endpoint": {
+      "source": "api",
+      "default": "default.com"
+    },
+    "description": {
+      "source": "content",
+      "default": "Default description value"
+    }
+  }
+}

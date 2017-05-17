@@ -1,0 +1,20 @@
+{
+  "name": "programmableweb",
+  "type": "web",
+  "list": "https://www.programmableweb.com/category/all/apis",
+  "pagination": {
+    "selector": ".nav-previous a@href",
+    "limit": 3,
+  },
+  "fields": {
+    "header": {
+      "selector": "div.node-header > h1"
+    },
+    "api": {
+      "selector": "#tabs-content > div.section.specs > div:nth-child(2) > span > a"
+    },
+    "content": {
+      "selector": ".api_description .tabs-header_description"
+    }
+  }
+}
