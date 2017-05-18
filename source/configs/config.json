@@ -1,0 +1,32 @@
+{
+  "name": "programmableweb",
+  "type": "scrape",
+  "url": "https://blog.ycombinator.com/",
+  "catalog_root":"https://www.programmableweb.com",
+  "fields": {
+    "header": {
+      "scrape": [".post h1 a"]
+    },
+    "api": {
+      "scrape": [".post .article-title@href"],
+      "include": {
+         "scrape": ".post a.author.url.fn@href",
+          "include": {
+            "test": {
+              "scrape": ["h1.page-title.author"]
+            },
+            "a": {
+              "scrape": "div.archive-description"
+            }
+          }
+      }
+    },
+    "content": {
+      "scrape": ".post .article-title@title"
+    },
+    "pagination": {
+      "selector": ".nav-previous a@href",
+      "limit": 3
+    }
+  }
+}

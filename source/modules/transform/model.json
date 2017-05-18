@@ -1,0 +1,17 @@
+{
+  "name": "programmableweb",
+  "fields": {
+    "title": {
+      "source": "header",
+      "default": "foobar"
+    },
+    "endpoint": {
+      "source": "api",
+      "default": "foobar.com"
+    },
+    "description": {
+      "source": "content",
+      "default": "Lorem hipsum..."
+    }
+  }
+}

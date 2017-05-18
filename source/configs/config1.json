@@ -1,0 +1,28 @@
+{
+  "name": "programmableweb",
+  "type": "scrape",
+  "url": "https://www.programmableweb.com/category/all/apis",
+  "catalog_root":"https://www.programmableweb.com",
+  "fields": {
+    "header": {
+      "scrape": "td:nth-child(1) a"
+    },
+    "api": {
+      "scrape": "td:nth-child(1) a@href",
+      "include": {
+        "scrape": "#myTabContent #tabs-content .section.specs > div.field:nth-child(2) a"
+      }
+    },
+    "content": {
+      "scrape": "td:nth-child(1) a@href",
+      "include": {
+          "scrape": "div.api_description.tabs-header_description"
+      }
+    },
+    "pagination": {
+      "selector": ".pagination li.pager-last a@href",
+      "limit": 2
+    },
+    "scope": "div.view-search-apis table.views-table tbody tr"
+  }
+}
