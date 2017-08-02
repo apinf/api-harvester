@@ -22,7 +22,7 @@ class Sender {
 
         return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
     }
-    
+
     /**
      * Send transformed data in api
      * @public
@@ -32,16 +32,21 @@ class Sender {
      * @memberOf Sender
      */
     send(data, callback) {
-        const url = "https://apinf.io/apis",
+      //const url = "https://apinf.io/rest/v1/apis",
+      //const url = "https://nightly.apinf.io/rest/v1/apis",
+      const url = "http://localhost:3000/rest/v1/apis",
             json = {
-                api: {
-                    id: this._guid(),
-                    name: data.title,
-                    description: data.description,
-                    api_endpoint_url: data.endpoint
-                }
+                // api: {
+                //     id: this._guid(),
+                //     name: data.title,
+                //     description: data.description,
+                //     api_endpoint_url: data.endpoint
+                // }
+                name: data.title,
+                description: data.description,
+                url: data.endpoint
             };
-        
+
         request.post(
             url,
             {
