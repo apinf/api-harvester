@@ -2,6 +2,8 @@
 
 const request = require("request");
 
+var sender_conf = require("./sender_config");
+
 /**
  * Sender of transformed data in api
  * @class Sender
@@ -32,16 +34,8 @@ class Sender {
      * @memberOf Sender
      */
     send(data, callback) {
-      //const url = "https://apinf.io/rest/v1/apis",
-      //const url = "https://nightly.apinf.io/rest/v1/apis",
-      const url = "http://localhost:3000/rest/v1/apis",
+      const url = sender_conf.send_apis_url,
             json = {
-                // api: {
-                //     id: this._guid(),
-                //     name: data.title,
-                //     description: data.description,
-                //     api_endpoint_url: data.endpoint
-                // }
                 name: data.title,
                 description: data.description,
                 url: data.endpoint
