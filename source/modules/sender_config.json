@@ -1,3 +1,5 @@
 {
-  "send_apis_url": "http://localhost:3000/rest/v1/apis"
+  "send_apis_url": "http://localhost:3000/rest/v1/apis",
+  "send_login_url": "http://localhost:3000/rest/v1/login",
+  "output_errors_file": "./modules/sender_errors/harvesting-errors.json"
 }
