@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>API Harvester errors</title>
+
+  <script>
+    var defaultErrorFileName = "harvesting-errors.json";
+    var errorFileName = "";
+    function loadJsonContent( fileToLoad ) {
+      clearModifyForm();
+      clearShowForm();
+      // the input type file -selector may add a fake path to the file name
+      // so let's check if ':\' is included (as in C:\fakepath\fileToLoad)
+      // and clean it. (Note that the file to be loaded has to be in the same
+      // directory as this view-errors.html file)
+      if (fileToLoad.includes(":\\")) {
+        fileToLoad = fileToLoad.replace(/.*[\/\\]/, '');
+      }
+      errorFileName = fileToLoad;
+      updateSaveFileName();
+      fetch( fileToLoad )
+        .then(response => response.json())
+        .then(json => showJson(json));
+    }
+
+    function updateSaveFileName() {
+      document.getElementById("inputFileNameToSaveAs").value = "fixed_" + errorFileName;
+    }
+
+    var jso = null;
+    function showJson(json) {
+      jso = json;
+      // set filters according to initial setup
+      var hideDuplicates = 0;
+      var showModified = 0;
+      var showUnmodified = 1;
+      setFilters(hideDuplicates, showModified, showUnmodified);
+      updateErrorList(hideDuplicates, showModified, showUnmodified); // filter to show all unmodified
+    }
+
+    function setFilters(hideDuplicates, showModified, showUnmodified) {
+      document.getElementById("cbHideDuplicates").checked = hideDuplicates;
+      document.getElementById("cbShowModified").checked = showModified;
+      document.getElementById("cbShowUnmodified").checked = showUnmodified;
+    }
+
+    function errorCount(errCount) {
+      document.getElementById('showErrorCount').innerHTML = errCount;
+    }
+
+    function updateErrorList(hideDuplicates, showModified, showUnmodified) {
+      errCount = 0;
+      var addApi = true;
+      clearSelectBox();
+      jso.harvester_errors.forEach((error) => {
+        if (error.mod_sent == 0 && showUnmodified == 0) {
+          addApi = false;
+        }
+
+        if (error.mod_sent == 1 && showModified == 0) {
+          addApi = false;
+        }
+
+        if (error.is_duplicate == 1 && hideDuplicates == 1) {
+          addApi = false;
+        }
+
+        if (addApi) {
+          var opt = document.createElement("option");
+          opt.value = error.idNo;
+          opt.innerHTML = error.api_name;
+
+          // then append it to the select element
+          selectError.appendChild(opt);
+          errCount += 1;
+        }
+
+        addApi = true;
+      })
+      errorCount(errCount);
+    }
+
+    function updateShowForm() {
+      clearModifyForm();
+      if (document.getElementById("selectError").selectedIndex == 0) {
+        clearShowForm();
+      }
+      var ind = document.getElementById("selectError").value - 1;
+
+      var reason = jso.harvester_errors[ind].reason;
+      var name = jso.harvester_errors[ind].api_name;
+      var url  = jso.harvester_errors[ind].api_url;
+      var desc  = jso.harvester_errors[ind].desc_start;
+      var descEx  = jso.harvester_errors[ind].desc_exceeding;
+
+      document.getElementById("error_reason").value = reason;
+      document.getElementById("error_api_name").value = name;
+      document.getElementById("error_api_url").value = url;
+      document.getElementById("errorDescription").value = desc;
+      document.getElementById("errorDescriptionExceeding").value = descEx;
+    }
+
+    function saveChangesToFile() {
+      var textToSave = JSON.stringify(jso);
+
+      var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+      var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+      var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+
+      var downloadLink = document.createElement("a");
+      downloadLink.download = fileNameToSaveAs;
+      downloadLink.innerHTML = "Download File";
+      downloadLink.href = textToSaveAsURL;
+      downloadLink.onclick = destroyClickedElement;
+      downloadLink.style.display = "none";
+      document.body.appendChild(downloadLink);
+
+      downloadLink.click();
+
+      updateList();
+    }
+
+    function destroyClickedElement(event) {
+      document.body.removeChild(event.target);
+    }
+
+    function copyOrigFormData() {
+      document.getElementById("modify_api_name").value = document.getElementById("error_api_name").value;
+      document.getElementById("modifyDescription").value = document.getElementById("errorDescription").value;
+      document.getElementById("modify_api_url").value = document.getElementById("error_api_url").value;
+    }
+
+    function updateOriginalAPI() {
+      // override the failing API's errorenous info with the corrected one
+      var idNo = document.getElementById("selectError").value;
+      var name = document.getElementById("modify_api_name").value;
+      var api_url = document.getElementById("modify_api_url").value;
+      var desc_start = document.getElementById("modifyDescription").value;
+      jso.harvester_errors.forEach((errorItem) => {
+        if (errorItem.idNo == idNo) {
+          // update the data in jso
+          jso.harvester_errors[idNo -1].reason = 0;
+          jso.harvester_errors[idNo -1].api_name = name;
+          jso.harvester_errors[idNo -1].api_url = api_url;
+          jso.harvester_errors[idNo -1].desc_start = desc_start;
+          jso.harvester_errors[idNo -1].desc_exceeding = "";
+          jso.harvester_errors[idNo -1].mod_sent = 1;
+
+          document.getElementById("error_reason").value = 0;
+          document.getElementById("error_api_name").value = name;
+          document.getElementById("error_api_url").value = api_url;
+          document.getElementById("errorDescription").value = desc_start;
+          document.getElementById("errorDescriptionExceeding").value = "";
+        }
+      })
+      updateList();
+    }
+
+    function clearModifyForm() {
+      document.getElementById("modifyForm").reset();
+    }
+
+    function clearShowForm() {
+      document.getElementById("showForm").reset();
+    }
+
+    function clearFileToLoad() {
+      document.getElementById("fileToLoad").value = null;
+    }
+
+    function clearFileToSaveAs() {
+      document.getElementById("inputFileNameToSaveAs").value = null;
+    }
+
+    function resetPage() {
+      clearShowForm();
+      clearModifyForm();
+      clearFileToLoad();
+      clearFileToSaveAs();
+    }
+
+    // filter the combobox content
+    function updateList() {
+      clearModifyForm();
+      clearShowForm();
+      var hideDuplicates = (document.getElementById("cbHideDuplicates").checked == true ? 1 : 0);
+      var modified = (document.getElementById("cbShowModified").checked == true ? 1 : 0);
+      var unmodified = (document.getElementById("cbShowUnmodified").checked == true ? 1 : 0);
+
+      updateErrorList(hideDuplicates, modified, unmodified);
+    }
+
+    function clearSelectBox() {
+      var sb = document.getElementById("selectError");
+      for (var i=sb.length-1; i>0; i--) {
+        sb.remove(i);
+      }
+    }
+  </script>
+
+  </head>
+
+  <body onload="resetPage()">
+    <button onclick="loadJsonContent(defaultErrorFileName)">Load the default errors file</button> or,
+    Select a file <span style="font-style: italic">(from the same directory as this view-fix-errors.html)</span> to load:
+    <input type="file" id="fileToLoad">
+    <button onclick="loadJsonContent(document.getElementById('fileToLoad').value)">Load selected file</button>
+    <hr />
+    <div>
+      <table>
+        <td>
+          Error count: <span id="showErrorCount">-</span>
+        </td>
+        <td style="padding-left: 130px">
+          <select id="selectError" onchange="updateShowForm()">
+            <option value="--select item--">-- Select an error to view/fix --</option>
+          </select>
+        </td>
+        <td>
+          <input type="checkbox" id="cbHideDuplicates" />Hide duplicates
+        </td>
+        <td>
+          <input type="checkbox" id="cbShowModified" />Show modified
+        </td>
+        <td>
+          <input type="checkbox" id="cbShowUnmodified" />Show unmodified
+        </td>
+        <td>
+          <button onclick="updateList()">update list</button>
+        </td>
+      </table>
+    </div>
+    <hr />
+
+    <table>
+    <tr>
+      <th>ORIGINAL API INFO + META DATA</th>
+      <th>MODIFIED (AND TO BE SENT) API INFO</th>
+    </tr>
+    <tr>
+      <td>
+        <div style="border-style: double">
+          <form id="showForm">
+            <div style="margin: 10px">
+              ERROR REASON (0 = fixed and ready to be sent):<br />
+              <input id="error_reason" type="text" readonly="true" size="50"/>
+            </div>
+            <div style="margin: 10px">
+              API NAME:<br />
+              <input id="error_api_name" type="text" readonly="true" size="50"/>
+            </div>
+            <div style="margin: 10px">
+              API DESCRIPTION:<br />
+              <textarea id="errorDescription" readonly="true" cols="80" rows="20" maxlength="1000"></textarea>
+            </div>
+            <div style="margin: 10px">
+              EXCEEDING API DESCRIPTION (if &gt; 1000 chars):<br />
+              <textarea id="errorDescriptionExceeding" readonly="true" cols="80" rows="7"></textarea>
+            </div>
+            <div style="margin: 10px">
+              API ENDPOINT:<br />
+              <input id="error_api_url" type="text" readonly="true" size="50"/>
+            </div>
+          </form>
+        </div>
+      </td>
+      <td style="padding-left: 20px; vertical-align:top;">
+        <button onclick="copyOrigFormData()">COPY original API info here</button>
+        <div style="border-style: double">
+          <form id="modifyForm">
+            <div style="margin: 10px">
+              API NAME:<br />
+              <input id="modify_api_name" name="name" type="text" size="50"/>
+            </div>
+            <div style="margin: 10px">
+              API DESCRIPTION (max 1000 chars):<br />
+              <textarea id="modifyDescription" name="description" cols="80" rows="20" maxlength="1000"></textarea>
+            </div>
+            <div style="margin: 10px">
+              API ENDPOINT:<br />
+              <input id="modify_api_url" type="text" name="url" size="50"/>
+            </div>
+          </form>
+        </div>
+        <div style="text-align:right;">
+          <button onclick="updateOriginalAPI()">UPDATE the orginal API info with the fixed data and mark it as fixed</button>
+        </div>
+        <div style="padding:10px; border-style:solid; margin:15px;">
+          <span style="text-decoration: underline">Before closing this page (or new file load), save the changes!</span><br />
+          Filename to save as:<br />
+          <input id="inputFileNameToSaveAs" type="text" size="50" /><br />
+          <button onclick="saveChangesToFile()"><strong>SAVE all changes to a file</strong></button>
+        </div>
+      </td>
+      <td style="vertical-align: bottom">
+        <div style="margin: 15px; font-style: italic;">
+          <strong>Process overview:</strong><br /><br />
+          1) Load an errors-file<br /><br />
+          2) Select an error<br />
+          3) Fix it<br />
+          4) Update/confirm the fix<br />
+          5) (repeat 2-4 as needed)<br /><br />
+          6) Save all changes to a file<br /><br />
+          7) Use CLI to send the fixed API infos to the platform
+          <br /><br /><hr /><br /><br />
+          You don't have to fix all the erroneous API infos at once. Just fix one or more and then
+          send the fixed ones to the platform. <br /><br />
+          The not fixed ones will be stored to a
+          new 'harvesting-errors.json' file at the same time when the fixed ones are sent to the platform.
+          <br /><br />
+          See details <br />
+          &#129054; 'node index.js -help'
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  </body>
+</html>

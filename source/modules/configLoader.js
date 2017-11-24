@@ -30,7 +30,7 @@ class ConfigLoader {
             return data;
         } catch (err) {
             const msg = `Unable to parse file "${fullPath}", error: ${err}`;
-            
+
             throw new Error(msg);
         }
     }
@@ -47,7 +47,7 @@ class ConfigLoader {
     _readEachFiles(files, dir, callback) {
         files.forEach((file) => {
             const fullPath = `${dir}/${file}`;
-            
+
             fs.readFile(fullPath, "utf8", (err, text) => {
                 if (err) {
                     const msg = `Unable to read file "${fullPath}", error: ${err}`;
@@ -107,6 +107,10 @@ class ConfigLoader {
      */
     clear() {
         this.files = [];
+    }
+
+    howManyFilesInPath() {
+      return this.files.length;
     }
 }
 
