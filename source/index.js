@@ -13,6 +13,7 @@ var apisToSend = 0;
 var echoVerbose = false;
 var logIndex = false;
 var configFileCounter = 0;
+var sendFixed = false;
 
 /**
  * Transform and send data to api
@@ -84,12 +85,21 @@ function start () {
             echoVerbose = true;
         }
         else if (item.includes("-help")) {
-            console.log("\nSyntax to use API-Harvester is\n node index.js [<path_to_config_file(s)_folder> " +
-                "-u=<API-platform_username> -p=<password> [-v]] [-help]\n\n" +
-                "Note! There can be multiple paths for the config files.\n\n" +
-                "-v\t use verbose mode (output the response body for any API info sent successfully)\n" +
-                "-help\t output this help (and do not do harvesting)\n\n");
+            console.log("\nSyntax to use API-Harvester:\nnode index.js [<path(s)_to_config_file(s)_folder(s) | " +
+                "fixed_errors_filename_with_relative_path_to_this(source)_folder> -u=<API-platform_username> -p=<password>" +
+                " [-v] [-sendfixed]] [-help]\n\n" +
+                "Note! \n1) There can be multiple paths for the config files.\n" +
+                "2) If there are errors when sending the harvested APIs to the platform,\n" +
+                "   you can find the harvesting-errors.json file in modules/sender_errors/\n" +
+                "   folder, and view/fix the errors with view-fix-errors.html in the same folder.\n\n" +
+                "-v\t\t Use verbose mode (output the response body for any \n\t\t API info tried to be sent to the platform)\n" +
+                "-help\t\t Output this help (and do nothing else)\n" +
+                "-sendfixed\t Send fixed API infos from a single file (give the \n\t\t filename with relative path to this" +
+                " folder as a separate parameter).\n\n");
             process.exit(0);
+        }
+        else if (item.includes("-sendfixed")) {
+            sendFixed = true;
         }
         else {
             if (paths_temp.length < 1) {
@@ -100,6 +110,7 @@ function start () {
             }
         }
     });
+
     path_args = paths_temp.split(",");
 
     authenticate.login(user, pwd, function (err, data) {
@@ -109,12 +120,40 @@ function start () {
         if (logIndex) console.log("\nauthToken: \n" + authenticate.authToken);
         if (logIndex) console.log("userId: " + authenticate.userId);
 
-        // echo the API platform URL used in the harvesting, for convenience
-        console.log("\nAPI platform URL: \n" + sender_conf.send_apis_url);
+        // echo the used platform URL to send the API infos in the harvesting, for convenience
+        console.log("\nused platform URL to send the API infos: \n" + sender_conf.send_apis_url);
 
-        path_args.forEach((path) => {
-            configLoader.loadEachFile(path, onLoadConfig);
-        });
+        var datas = [];
+        if (!sendFixed) {
+          path_args.forEach((path) => {
+              configLoader.loadEachFile(path, onLoadConfig);
+          });
+        }
+        else {
+          // path_args here is the errors file name user intput in the CLI (with relative path to source folder)
+          if (!path_args.includes("./") && !path_args.includes("../")) {
+              path_args = "./" + path_args;
+          }
+          var errors = require(path_args);
+          // add errors to a structure that sender reads
+          errors.harvester_errors.forEach((error) => {
+             var data = {
+                 title: error.api_name,
+                 description: error.desc_start + error.desc_exceeding,
+                 endpoint: error.api_url
+             };
+             datas.push(data);
+          });
+
+          apisToSend = datas.length;
+          datas.forEach((data) => {
+              sender.send(data, function (responseBody) {
+                  if (echoVerbose) {
+                      console.log(responseBody);
+                  }
+              });
+          });
+        }
     });
 }
 
@@ -123,6 +162,10 @@ function apisToSendCount() {
 }
 
 function allFilesInPathProcessed() {
+    // always return true if processing a the fixed errors file (program started with -sendFixed switch)
+    if (sendFixed) {
+        return true;
+    }
     return (configFileCounter == configLoader.howManyFilesInPath());
 }
 

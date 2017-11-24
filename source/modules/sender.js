@@ -241,8 +241,8 @@ class Sender {
     checkToCloseTheErrorsFile() {
       // if last item, close the error file if it's been created
       if (index.allFilesInPathProcessed() && index.apisToSendCount() == apiCounter &&
-            failingApiCounter > 0 && waitingHttpResponses == 0) {
-          if (logSender) console.log('apis-to-send: '  + index.apisToSendCount() + '  api-conter: ' + apiCounter +
+            waitingHttpResponses == 0) {
+          if (logSender) console.log('apis-to-send: '  + index.apisToSendCount() + '  api-counter: ' + apiCounter +
             ' waitingHttpResponses: ' + waitingHttpResponses);
           // when all harvesting is done, add proper closure text to the harvesting-errors file
           this.manageErrorOutputFile(true, function () {
@@ -254,7 +254,10 @@ class Sender {
             (index.apisToSendCount()-failingApiCounter) + " was successfully added \n" +
             errorInDataFieldContentCount + " had errors in their data field content \n" +
             error400Count + " was interpret as duplicate (based on API name) \n" +
-            error409Count + " was missing name or url info\n\n");
+            error409Count + " was missing name or url info\n\n\n" +
+            "harvesting-errors.json file has been created in modules/sender_errors folder\n" +
+            "Use view-fix-errors.html file in the same folder to view and manually fix the errors.\n" +
+            "Then send the fixed API info(s) to the platform. (See details 'node index.js -help'.)\n\n");
       }
     }
 }
